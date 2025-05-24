@@ -6,17 +6,9 @@ const About = () => {
       <h1 className="text-6xl text-center font-bold mb-8">About Me</h1>
       <div className="max-w-3xl mx-auto text-lg leading-relaxed text-center">
         <p className="mb-4">
-          I am a graduate on AMA Computer College Cabanatuan with a Bachelor's Degree in Information Technology. 
-          Currently, I serve as a 
-          <div className="flex justify-center">
-            <PointerHighlight
-            rectangleClassName="bg-blue-400 dark:bg-blue-900 border-blue-300 dark:border-blue-700 leading-loose"
-            pointerClassName="text-blue-500 h-3 w-3"
-            containerClassName="inline-block mx-1"
-            >
-              <span className="block relative z-10">System Associate Developer at Vizserve Private Limited</span>
-            </PointerHighlight>
-          </div>where I specialize in building modern, responsive web applications.
+          I am a graduate of AMA Computer College Cabanatuan with a Bachelor's Degree in Information Technology. 
+          Currently, I serve as a <PointerHighlight><span>System Associcate Developer</span></PointerHighlight>, where I specialize in building modern, 
+          responsive web applications.
         </p>
         <p className="mb-4">
           Passionate about continuous learning, I stay abreast of the latest industry trends and best practices to deliver 
