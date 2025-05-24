@@ -4,6 +4,7 @@ import { ContainerTextFlip } from "@/components/ui/container-text-flip";
 import { Button } from "@/components/ui/button"
 import { Github, Download  } from 'lucide-react';
 import NavbarMenu from "../Navbar/Navbar";
+import profile from "@/assets/profile.jpg"
 
 export function Home() {
   return (
@@ -40,7 +41,7 @@ export function Home() {
         </div>
         <div className="flex-1 flex items-center justify-end">
         <Avatar className="w-70 h-70">
-          <AvatarImage src="https://github.com/shadcn.png" />
+          <AvatarImage src={profile} />
           <AvatarFallback>LM</AvatarFallback>
         </Avatar>
         </div>
