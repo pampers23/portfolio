@@ -1,4 +1,5 @@
 import About from "./components/About/about"
+import ExperiencePage from "./components/Experience/experience-page"
 import { Home } from "./components/Home/Home"
 import Skills from "./components/Skills/skills"
 
@@ -8,6 +9,7 @@ const App = () => {
       <Home />
       <About />
       <Skills />
+      <ExperiencePage />
     </div>
   )
 }
