@@ -68,7 +68,7 @@ function TimelineItem({ year, title, company, description, icon, side, index }: 
                   {title}
                 </h3>
                 <div className="flex items-center gap-2 mb-4">
-                  <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" />
+                  <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-blue-500 rounded-full" />
                   <p className="text-blue-600 font-semibold text-sm">{company}</p>
                 </div>
               </div>

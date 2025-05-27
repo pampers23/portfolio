@@ -2,7 +2,7 @@ import Experince from "@/components/Experience/experience"
 
 export default function ExperiencePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
+    <div className="relative min-h-screen w-full bg-neutral-950 text-slate-200 overflow-hidden px-6 py-12">
       <div className="container mx-auto">
         <Experince />
       </div>
