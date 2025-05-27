@@ -33,7 +33,7 @@ function TimelineItem({ year, title, company, description, icon, side, index }: 
         initial={{ scale: 0 }}
         animate={isInView ? { scale: 1 } : { scale: 0 }}
         transition={{ duration: 0.4, delay: index * 0.2 + 0.3 }}
-        className="absolute left-1/2 transform -translate-x-1/2 w-14 h-14 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white z-10 shadow-lg border-4 border-white"
+        className="absolute left-1/2 transform -translate-x-1/2 w-14 h-14 bg-gradient-to-br from-blue-600 to-blue-600 rounded-full flex items-center justify-center text-white z-10 shadow-lg border-4 border-white"
       >
         {icon}
       </motion.div>
