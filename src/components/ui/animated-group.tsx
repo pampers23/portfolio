@@ -23,8 +23,6 @@ export type AnimatedGroupProps = {
     item?: Variants
   }
   preset?: PresetType
-  as?: React.ElementType
-  asChild?: React.ElementType
   triggerOnce?: boolean
   threshold?: number
   margin?: string
@@ -108,17 +106,16 @@ function AnimatedGroup({
   className,
   variants,
   preset,
-  as = "div",
-  asChild = "div",
   triggerOnce = false,
   threshold = 0.1,
   margin = "0px",
 }: AnimatedGroupProps) {
-  const ref = useRef(null)
+  const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, {
     once: triggerOnce,
     amount: threshold,
-    margin: margin,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    margin: margin as any,
   })
 
   const selectedVariants = {
@@ -128,11 +125,8 @@ function AnimatedGroup({
   const containerVariants = variants?.container || selectedVariants.container
   const itemVariants = variants?.item || selectedVariants.item
 
-  const MotionComponent = React.useMemo(() => motion.create(as as keyof JSX.IntrinsicElements), [as])
-  const MotionChild = React.useMemo(() => motion.create(asChild as keyof JSX.IntrinsicElements), [asChild])
-
   return (
-    <MotionComponent
+    <motion.div
       ref={ref}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
@@ -140,11 +134,11 @@ function AnimatedGroup({
       className={className}
     >
       {React.Children.map(children, (child, index) => (
-        <MotionChild key={index} variants={itemVariants}>
+        <motion.div key={index} variants={itemVariants}>
           {child}
-        </MotionChild>
+        </motion.div>
       ))}
-    </MotionComponent>
+    </motion.div>
   )
 }
 
