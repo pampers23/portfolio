@@ -8,12 +8,14 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-dist
-dist-ssr
+# dist and dist-ssr are now allowed (uncommented)
+# dist
+# dist-ssr
 *.local
 
 # Editor directories and files
-.vscode/*
+# .vscode/* is now commented so all vscode files will be included
+# .vscode/*
 !.vscode/extensions.json
 .idea
 .DS_Store
