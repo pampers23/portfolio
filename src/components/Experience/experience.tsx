@@ -24,7 +24,7 @@ function TimelineItem({ year, title, company, description, icon, side, index }: 
             initial={{ opacity: 0, x: -100 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
             transition={{ duration: 0.6, delay: index * 0.2 }}
-            className="w-5/12 pr-8 relative"
+            className="w-5/12 pr-8 relative "
           >
             {/* Year badge positioned on the card */}
             <motion.div
@@ -60,7 +60,7 @@ function TimelineItem({ year, title, company, description, icon, side, index }: 
           initial={{ scale: 0 }}
           animate={isInView ? { scale: 1 } : { scale: 0 }}
           transition={{ duration: 0.4, delay: index * 0.2 + 0.3 }}
-          className="absolute left-1/2 transform -translate-x-1/2 w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white z-20 shadow-xl border-4 border-black"
+          className="absolute left-1/2 transform -translate-x-1/2 w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center md justify-center text-white z-20 shadow-xl border-4 border-black"
         >
           {icon}
         </motion.div>

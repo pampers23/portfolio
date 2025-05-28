@@ -1,5 +1,5 @@
 import About from "./components/About/about"
-
+import Contact from "./components/Contact/contact"
 import ExperiencePage from "./components/Experience/experience-page"
 import { Home } from "./components/Home/Home"
 import Skills from "./components/Skills/skills"
@@ -11,6 +11,7 @@ const App = () => {
       <About />
       <Skills />
       <ExperiencePage />
+      <Contact />
     </div>
   )
 }
