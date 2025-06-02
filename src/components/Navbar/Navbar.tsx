@@ -1,18 +1,73 @@
-import { Navbar } from "../ui/resizable-navbar";
+import {
+  Navbar,
+  NavBody,
+  NavItems,
+  MobileNav,
+  NavbarLogo,
+  MobileNavHeader,
+  MobileNavToggle,
+  MobileNavMenu,
+} from "@/components/ui/resizable-navbar"
+import { useState } from "react"
 
 const NavbarMenu = () => {
+
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  
+    const navItems = [
+      {
+        name: "Home",
+        link: "#home",
+      },
+      {
+        name: "About",
+        link: "#about",
+      },
+      {
+        name: "Skills",
+        link: "#skills",
+      },
+      {
+        name: "Experience",
+        link: "#experience",
+      },
+      {
+        name: "Contact",
+        link: "#contact",
+      },
+    ]
+
   return (
     <div>
-        <Navbar>
-            <div className="flex items-center justify-between w-full px-8 py-4">
-                <span className="text-xl font-bold">Lance</span>
-                <div className="flex gap-6">
-                    <a href="/home" className="hover:underline">Home</a>
-                    <a href="#" className="hover:underline">About</a>
-                    <a href="#" className="hover:underline">Contact</a>
-                </div>
-            </div>
-        </Navbar>
+      {/* Navbar */}
+      <Navbar>
+        {/* Desktop Navigation */}
+        <NavBody>
+          <NavbarLogo />
+          <NavItems items={navItems} />
+        </NavBody>
+
+        {/* Mobile Navigation */}
+        <MobileNav>
+          <MobileNavHeader>
+            <NavbarLogo />
+            <MobileNavToggle isOpen={isMobileMenuOpen} onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} />
+          </MobileNavHeader>
+
+          <MobileNavMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)}>
+            {navItems.map((item, idx) => (
+              <a
+                key={`mobile-link-${idx}`}
+                href={item.link}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="relative text-black hover:text-blue-400 transition-colors"
+              >
+                <span className="block">{item.name}</span>
+              </a>
+            ))}
+          </MobileNavMenu>
+        </MobileNav>
+      </Navbar>
     </div>
   )
 }
