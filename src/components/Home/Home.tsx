@@ -6,12 +6,14 @@ import { Download, Github } from "lucide-react"
 import { FlipWords } from "@/components/ui/flip-words"
 import profile from "@/assets/profile.jpg"
 import resume from "@/assets/My Resume.pdf"
+import { Spotlight } from "@/components/ui/spotlight-new"
 
 export function Home() {
   const words = ["Lance", "Web Designer", "Web Developer"]
 
   return (
     <div className="relative min-h-screen w-full bg-neutral-950 text-slate-200 overflow-hidden">
+      <Spotlight />
       {/* Main Content Container */}
       <div
         className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-20 mt-20"
