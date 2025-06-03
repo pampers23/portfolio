@@ -16,21 +16,42 @@ import { FaWhatsapp } from "react-icons/fa";
 import profile from "@/assets/profile.jpg"
 import { formSchema } from "@/zod-schema";
 import toast, { Toaster } from 'react-hot-toast';
+import emailjs from "@emailjs/browser";
+import { EMAILJS } from "@/lib/config";
 
 const Contact = () => {
 
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      email: "",
+      user_name: "",
+      user_email: "",
       message: "",
     },
   });
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function onSubmit(values: any) {
-    console.log("Submitted:", values);
+    const templateParams = {
+      from_name: values.user_name,
+      from_email: values.user_email,
+      message: values.message,
+    };
+
+    emailjs
+      .send(
+        EMAILJS.SERVICE_ID, 
+        EMAILJS.TEMPLATE_ID, 
+        templateParams, 
+        EMAILJS.PUBLIC_KEY)
+      .then(() => {
+        toast.success("Message sent successfully!");
+        form.reset();
+      })
+      .catch((error) => {
+        console.error("EmailJS error:", error);
+        toast.error("Failed to send message. Try again later.");
+      });
   }
 
   return (
@@ -51,7 +72,7 @@ const Contact = () => {
             {/* Name Field */}
             <FormField
               control={form.control}
-              name="name"
+              name="user_name"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Name</FormLabel>
@@ -73,7 +94,7 @@ const Contact = () => {
             {/* Email Field */}
             <FormField
               control={form.control}
-              name="email"
+              name="user_email"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Email</FormLabel>
@@ -119,7 +140,7 @@ const Contact = () => {
             {/* Submit Button */}
             <Button 
               type="submit" 
-              className="w-full bg-sky-600 hover:bg-sky-700"
+              className="w-full bg-sky-600 hover:bg-sky-700 cursor-pointer"
               onClick={() => {
                 const success = true; 
                 if (success) {
