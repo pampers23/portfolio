@@ -60,7 +60,7 @@ const NavbarMenu = () => {
                 key={`mobile-link-${idx}`}
                 href={item.link}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="relative text-black hover:text-blue-400 transition-colors"
+                className="relative text-white hover:text-blue-400 transition-colors"
               >
                 <span className="block">{item.name}</span>
               </a>
