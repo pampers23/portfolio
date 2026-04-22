@@ -1,93 +1,164 @@
-"use client"
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { FaDownload, FaEnvelope } from "react-icons/fa6";
+import { Button } from "@/components/ui/button";
+import Particles from "@/components/Particles";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
-import { Download, Github } from "lucide-react"
-import { FlipWords } from "@/components/ui/flip-words"
-import profile from "@/assets/profile.jpg"
-import resume from "@/assets/My Resume.pdf"
-import { Spotlight } from "@/components/ui/spotlight-new"
+const Home = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
 
-export function Home() {
-  const words = ["Lance", "Web Designer", "Web Developer"]
+  // Parallax and Fade logic
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] as const },
+    },
+  };
 
   return (
-    <div className="relative min-h-screen w-full bg-neutral-950 text-slate-200 overflow-hidden">
-      <Spotlight />
-      {/* Main Content Container */}
-      <div
-        className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-20 mt-20"
-        style={{ minHeight: "calc(100vh - 80px)" }}
+    <section
+      ref={ref}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero"
+    >
+      {/* 
+          BACKGROUND LAYER 1: Particles 
+          We wrap this in motion.div so the particles fade out on scroll 
+      */}
+      <motion.div 
+        style={{ opacity }} 
+        className="absolute inset-0 z-0 pointer-events-none"
       >
-        {/* Responsive Layout: Stack on mobile, side-by-side on desktop */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 lg:gap-12 h-full">
-          {/* Text Content */}
-          <div className="flex-1 flex flex-col items-center lg:items-start justify-center text-center lg:text-left">
-            <div className="w-full max-w-4xl">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold text-blue-100 leading-tight text-center lg:text-left">
-                I'm <FlipWords words={words} className="text-blue-400" />
-              </h1>
-            </div>
-            <div className="mt-4 sm:mt-6 lg:mt-8 space-y-2 sm:space-y-3 text-center lg:text-left">
-              <p className="text-base sm:text-lg lg:text-xl font-medium text-slate-300">
-                A <span className="text-blue-400">Web Developer</span> based in the Philippines
-              </p>
-              <p className="text-sm sm:text-base lg:text-lg font-light text-slate-300 max-w-lg mx-auto lg:mx-0">
-                Passionate of creating modern and responsive web applications.
-              </p>
-            </div>
+        <Particles
+          particleCount={300}
+          particleSpread={10}
+          speed={0.1}
+          particleColors={['#ffffff', '#3b82f6']} // White and Primary Blue
+          moveParticlesOnHover={true}
+          particleHoverFactor={2}
+          alphaParticles={true}
+          particleBaseSize={100}
+          sizeRandomness={1}
+          cameraDistance={25}
+          disableRotation={false}
+        />
+      </motion.div>
 
-            {/* Buttons */}
+      {/* BACKGROUND LAYER 2: Parallax Orbs */}
+      <motion.div
+        style={{ y }}
+        className="absolute inset-0 pointer-events-none z-[1]"
+      >
+        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
+      </motion.div>
 
-            {/* Github button */}
-            <div className="mt-6 sm:mt-8 lg:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto justify-center lg:justify-start">
-              <a 
-                  href="https://github.com/pampers23"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                <Button className="group/github-btn relative overflow-hidden w-full sm:w-40 h-10 sm:h-12 cursor-pointer bg-blue-600 hover:bg-blue-700 transition-colors">
-                  <span className="group-hover/github-btn:translate-x-40 transition duration-500 text-sm sm:text-base">
-                    Github
-                  </span>
-                  <div className="-translate-x-40 group-hover/github-btn:translate-x-0 flex items-center justify-center absolute inset-0 transition duration-500 z-20">
-                    <Github className="h-4 w-4 sm:h-5 sm:w-5" />
-                  </div>
-                </Button>
+      {/* BACKGROUND LAYER 3: Grid Pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.3)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.3)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none z-[2]" />
+
+      {/* CONTENT LAYER: All text and buttons */}
+      <motion.div
+        style={{ opacity }}
+        className="container mx-auto px-6 relative z-10"
+      >
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="text-center max-w-4xl mx-auto"
+        >
+          <motion.div
+            variants={itemVariants}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary text-sm text-muted-foreground mb-8"
+          >
+            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+            Available for new opportunities
+          </motion.div>
+
+          <motion.h1
+            variants={itemVariants}
+            className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight"
+          >
+            Hi, I'm <span className="text-gradient">Lance</span>
+          </motion.h1>
+
+          <motion.p
+            variants={itemVariants}
+            className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl mx-auto"
+          >
+            A passionate <span className="text-foreground font-medium">Web Developer</span> crafting beautiful, 
+            performant, and accessible digital experiences.
+          </motion.p>
+
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          >
+            <Button variant="hero" size="lg" asChild>
+              <a
+                href="/resume.pdf"
+                download
+                className="inline-flex items-center justify-center gap-2 whitespace-nowrap"
+              >
+                <FaDownload className="w-4 h-4 shrink-0" />
+                <span>Download Resume</span>
               </a>
-              {/* Resume Download Button */}
-                <a
-                  href={resume}
-                  download
-                  className="w-full sm:w-40"
-                >
-                  <Button className="group/resume-btn relative overflow-hidden w-full h-10 sm:h-12 cursor-pointer border border-blue-500 bg-transparent hover:bg-blue-500/10 transition-colors">
-                    <span className="group-hover/resume-btn:translate-x-40 transition duration-500 text-sm sm:text-base">
-                      Resume
-                    </span>
-                    <div className="-translate-x-40 group-hover/resume-btn:translate-x-0 flex items-center justify-center absolute inset-0 transition duration-500 z-20">
-                      <Download className="h-4 w-4 sm:h-5 sm:w-5" />
-                    </div>
-                  </Button>
-                </a>
-            </div>
-          </div>
+            </Button>
 
-          {/* Avatar */}
-          <div className="flex-1 flex items-center justify-center lg:justify-end order-first lg:order-last">
-            <div className="relative">
-              {/* Glow effect behind avatar */}
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full blur-xl opacity-20 scale-110"></div>
-              <Avatar className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 xl:w-80 xl:h-80 border-2 border-blue-500/30">
-                <AvatarImage src={profile} className="object-cover" />
-                <AvatarFallback className="text-2xl sm:text-3xl lg:text-4xl bg-gradient-to-br from-blue-500 to-blue-700 text-white">
-                  LM
-                </AvatarFallback>
-              </Avatar>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
+            <Button variant="heroOutline" size="lg" asChild>
+              <a
+                href="#contact"
+                className="inline-flex items-center justify-center gap-2 whitespace-nowrap"
+              >
+                <FaEnvelope className="w-4 h-4 shrink-0" />
+                <span>Contact Me</span>
+              </a>
+            </Button>
+          </motion.div>
+
+          {/* Scroll Indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.5 }}
+            className="absolute bottom-10 left-1/2 -translate-x-1/2"
+          >
+            <motion.div
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex justify-center pt-2"
+            >
+              <motion.div
+                animate={{ opacity: [1, 0, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="w-1.5 h-3 rounded-full bg-primary"
+              />
+            </motion.div>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    </section>
+  );
+};
+
+export default Home;
