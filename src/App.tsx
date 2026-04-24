@@ -1,4 +1,5 @@
-// import About from "./components/About/about"
+import About from "./components/About/about"
+import Background from "./components/background"
 // import Contact from "./components/Contact/contact"
 // import ExperiencePage from "./components/Experience/experience-page"
 // import Footer from "./components/Footer/footer"
@@ -7,21 +8,22 @@ import NavbarMenu from "./components/Navbar/Navbar"
 import { ThemeProvider } from "./components/theme-provider"
 // import Skills from "./components/Skills/skills"
 
-
-
 const App = () => {
   return (
-    <div className="min-h-screen">
-      <NavbarMenu />
-      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <div className="min-h-screen relative">
+        <Background />
+        <NavbarMenu />
+
         <section id="home"><Home /></section>
-        {/* <section id="about"><About /></section> */}
+        <section id="about"><About /></section>
+
         {/* <section id="skills"><Skills /></section> */}
         {/* <section id="experience"><ExperiencePage /></section> */}
         {/* <section id="contact"><Contact /></section> */}
         {/* <Footer /> */}
-      </ThemeProvider>
-    </div>
+      </div>
+    </ThemeProvider>
   )
 }
 
