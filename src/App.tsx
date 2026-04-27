@@ -6,7 +6,7 @@ import Background from "./components/background"
 import Home from "./components/Home/Home"
 import NavbarMenu from "./components/Navbar/Navbar"
 import { ThemeProvider } from "./components/theme-provider"
-// import Skills from "./components/Skills/skills"
+import Projects from "./components/Projects/projects"
 
 const App = () => {
   return (
@@ -18,7 +18,7 @@ const App = () => {
         <section id="home"><Home /></section>
         <section id="about"><About /></section>
 
-        {/* <section id="skills"><Skills /></section> */}
+        <section id="projects"><Projects /></section>
         {/* <section id="experience"><ExperiencePage /></section> */}
         {/* <section id="contact"><Contact /></section> */}
         {/* <Footer /> */}

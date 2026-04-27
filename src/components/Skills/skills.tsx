@@ -106,6 +106,7 @@ const Skills = () => {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
             {techStack.map((tech, index) => (
               <motion.div
+                key={tech.name}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.4, delay: 1 + index * 0.05 }}
