@@ -62,7 +62,7 @@ const Home = () => {
             variants={itemVariants}
             className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight"
           >
-            Hi, I'm <span className="text-gradient">Lance</span>
+            Hi, I'm <span className="text-white">Lance</span>
           </motion.h1>
 
           <motion.p

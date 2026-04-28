@@ -4,8 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "tsr generate && vite",
+    "build": "tsr generate && tsc -b && vite build",
+    "tsr": "tsr generate",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -20,6 +21,7 @@
     "@radix-ui/react-slot": "^1.2.3",
     "@tabler/icons-react": "^3.33.0",
     "@tailwindcss/vite": "^4.1.7",
+    "@tanstack/react-router": "^1.168.24",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cobe": "^0.6.3",
@@ -45,6 +47,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
+    "@tanstack/router-cli": "^1.166.37",
     "@types/node": "^22.15.21",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
