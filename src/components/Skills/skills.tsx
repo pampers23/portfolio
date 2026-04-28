@@ -44,7 +44,7 @@ const Skills = () => {
         className="text-center mb-16"
       >
         <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
-          My <span className="text-gradient">Skills</span>
+          My <span className="text-white">Skills</span>
         </h2>
         <p className="text-muted-foreground max-w-md mx-auto">
           Technologies and skills I use to build amazing web experiences.
@@ -99,7 +99,7 @@ const Skills = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="space-y-8"
         >
-          <h3 className="font-display text-2xl md:text-3xl font-semibold">
+          <h3 className="font-display text-2xl md:text-3xl font-semibold pl-25 sm:pl-25">
             Tech <Highlight className="text-white">Stack</Highlight>
           </h3>
           
