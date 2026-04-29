@@ -8,20 +8,24 @@ import NavbarMenu from "./components/Navbar/Navbar"
 import { ThemeProvider } from "./components/theme-provider"
 import Projects from "./components/Projects/projects"
 
+
+
+
 const App = () => {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <div className="min-h-screen relative">
+      <div className="min-h-screen relative z-10">
+        
         <Background />
+
         <NavbarMenu />
 
-        <section id="home" className="pt-20 sm:pt-24"><Home /></section>
-        <section id="about" className="pt-20 sm:pt-24"><About /></section>
-
-        <section id="projects" className="pt-20 sm:pt-24"><Projects /></section>
-        <section id="experience" className="pt-20 sm:pt-24"><ExperiencePage /></section>
-        <section id="contact" className="pt-20 sm:pt-24"><Contact /></section>
-        <section id="footer" className="pt-20 sm:pt-24"><Footer /></section>
+        <section id="home"><Home /></section>
+        <section id="about"><About /></section>
+        <section id="projects"><Projects /></section>
+        <section id="experience"><ExperiencePage /></section>
+        <Contact />
+        <Footer />
       </div>
     </ThemeProvider>
   )
