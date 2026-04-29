@@ -15,12 +15,12 @@ const App = () => {
         <Background />
         <NavbarMenu />
 
-        <section id="home"><Home /></section>
-        <section id="about"><About /></section>
+        <section id="home" className="pt-20 sm:pt-24"><Home /></section>
+        <section id="about" className="pt-20 sm:pt-24"><About /></section>
 
-        <section id="projects"><Projects /></section>
-        <section id="experience"><ExperiencePage /></section>
-        <section id="contact"><Contact /></section>
+        <section id="projects" className="pt-20 sm:pt-24"><Projects /></section>
+        <section id="experience" className="pt-20 sm:pt-24"><ExperiencePage /></section>
+        <section id="contact" className="pt-20 sm:pt-24"><Contact /></section>
         {/* <Footer /> */}
       </div>
     </ThemeProvider>
