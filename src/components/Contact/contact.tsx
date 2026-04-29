@@ -1,11 +1,16 @@
 import { motion } from "framer-motion";
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 import { Mail, Github, MessageCircle, Phone, Send, Copy, Check, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { useForm } from "react-hook-form";
+import { formSchema } from "@/zod-schema";
+import { zodResolver } from "@hookform/resolvers/zod"
+import emailjs from "@emailjs/browser";
+import { EMAILJS } from "@/lib/config";
 
 const CONTACTS = [
   { id: "email", icon: Mail, label: "Email", value: "lancemendoza502@gmail.com", href: "mailto:lancemendoza502@gmail.com", copy: "lancemendoza502@gmail.com", accent: "from-sky-500/20 to-blue-500/10" },
@@ -18,13 +23,27 @@ function Contact() {
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState<string | null>(null);
 
-  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSubmit = async (values: FormValues) => {
+    const templateParams = {
+      from_name: values.user_name,
+      from_email: values.user_email,
+      message: values.message,
+    };
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 900));
-    setLoading(false);
-    toast.success("Message sent!", { description: "I'll get back to you within 24 hours." });
-    (e.target as HTMLFormElement).reset();
+    emailjs
+      .send(
+        EMAILJS.SERVICE_ID, 
+        EMAILJS.TEMPLATE_ID, 
+        templateParams, 
+        EMAILJS.PUBLIC_KEY)
+      .then(() => {
+        toast.success("Message sent successfully!");
+        form.reset();
+      })
+      .catch((error) => {
+        console.error("EmailJS error:", error);
+        toast.error("Failed to send message. Try again later.");
+      });
   };
 
   const copy = async (id: string, value: string) => {
@@ -37,6 +56,15 @@ function Contact() {
       toast.error("Couldn't copy");
     }
   };
+
+  const form = useForm({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      user_name: "",
+      user_email: "",
+      message: "",
+    }
+  })
 
   return (
     <section id="contact" className="relative py-24 sm:py-32 scroll-mt-24 overflow-hidden">
@@ -112,20 +140,20 @@ function Contact() {
                 <p className="text-sm text-muted-foreground mt-1">I'll reply to your email shortly.</p>
               </div>
 
-              <form onSubmit={onSubmit} className="grid gap-5">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-5">
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="grid gap-2">
                     <Label htmlFor="name">Name</Label>
-                    <Input id="name" name="name" required placeholder="Jane Doe" className="rounded-2xl h-11 bg-background/40 focus-visible:ring-primary/40" />
+                    <Input id="name" {...form.register("user_name")} required placeholder="Jane Doe" className="rounded-2xl h-11 bg-background/40 focus-visible:ring-primary/40" />
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="email">Email</Label>
-                    <Input id="email" name="email" type="email" required placeholder="you@email.com" className="rounded-2xl h-11 bg-background/40 focus-visible:ring-primary/40" />
+                    <Input id="email" {...form.register("user_email")} type="email" required placeholder="you@email.com" className="rounded-2xl h-11 bg-background/40 focus-visible:ring-primary/40" />
                   </div>
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="message">Message</Label>
-                  <Textarea id="message" name="message" required rows={6} placeholder="Tell me about your project…" className="rounded-2xl bg-background/40 focus-visible:ring-primary/40 resize-none" />
+                  <Textarea id="message" {...form.register("message")} required rows={6} placeholder="Tell me about your project…" className="rounded-2xl bg-background/40 focus-visible:ring-primary/40 resize-none" />
                 </div>
 
                 <Button
