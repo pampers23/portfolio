@@ -9,6 +9,7 @@ import {
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar"
 import { useState } from "react"
+import { ModeToggle } from "../mode-toggle"
 
 const NavbarMenu = () => {
 
@@ -45,6 +46,7 @@ const NavbarMenu = () => {
         <NavBody>
           <NavbarLogo />
           <NavItems items={navItems} />
+          <ModeToggle />
         </NavBody>
 
         {/* Mobile Navigation */}
@@ -52,6 +54,7 @@ const NavbarMenu = () => {
           <MobileNavHeader>
             <NavbarLogo />
             <MobileNavToggle isOpen={isMobileMenuOpen} onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} />
+            <ModeToggle />
           </MobileNavHeader>
 
           <MobileNavMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)}>

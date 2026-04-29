@@ -2,7 +2,7 @@ import About from "./components/About/about"
 import Background from "./components/background"
 import Contact from "./components/Contact/contact"
 import ExperiencePage from "./components/Experience/experience-page"
-// import Footer from "./components/Footer/footer"
+import {Footer} from "./components/Footer/footer"
 import Home from "./components/Home/Home"
 import NavbarMenu from "./components/Navbar/Navbar"
 import { ThemeProvider } from "./components/theme-provider"
@@ -21,7 +21,7 @@ const App = () => {
         <section id="projects" className="pt-20 sm:pt-24"><Projects /></section>
         <section id="experience" className="pt-20 sm:pt-24"><ExperiencePage /></section>
         <section id="contact" className="pt-20 sm:pt-24"><Contact /></section>
-        {/* <Footer /> */}
+        <section id="footer" className="pt-20 sm:pt-24"><Footer /></section>
       </div>
     </ThemeProvider>
   )
