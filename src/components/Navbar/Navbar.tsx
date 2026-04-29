@@ -46,15 +46,22 @@ const NavbarMenu = () => {
         <NavBody>
           <NavbarLogo />
           <NavItems items={navItems} />
-          <ModeToggle />
+          <div className="flex items-center z-50">
+            <ModeToggle />
+          </div>
         </NavBody>
 
         {/* Mobile Navigation */}
         <MobileNav>
           <MobileNavHeader>
             <NavbarLogo />
-            <ModeToggle />
-            <MobileNavToggle isOpen={isMobileMenuOpen} onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} />
+            <div className="flex items-center gap-2">
+              <ModeToggle />
+              <MobileNavToggle
+                isOpen={isMobileMenuOpen}
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              />
+            </div>
           </MobileNavHeader>
 
           <MobileNavMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)}>
