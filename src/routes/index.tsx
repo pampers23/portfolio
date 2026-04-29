@@ -4,6 +4,7 @@ import About from '@/components/About/about'
 import Projects from '@/components/Projects/projects'
 import ExperiencePage from '@/components/Experience/experience-page'
 import Contact from '@/components/Contact/contact'
+import { Footer } from '@/components/Footer/footer'
 
 export const Route = createFileRoute('/')({
   component: IndexRoute,
@@ -17,6 +18,7 @@ function IndexRoute() {
       <section id="projects"><Projects /></section>
       <section id="experience"><ExperiencePage /></section>
       <section id="contact"><Contact /></section>
+      <section id="footer"><Footer /></section>
     </div>
   )
 }
