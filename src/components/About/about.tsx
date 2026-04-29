@@ -49,7 +49,7 @@ const About = () => {
         whileInView={{ opacity: 1, y: 0 }} // ✅ no ref needed
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="lg:hidden mb-16 max-w-md mx-auto pl-20 sm:pl-25"
+        className="lg:hidden mb-16 max-w-md mx-auto pl-20 sm:pl-30"
       >
         <ProfileCard
           name="Lance Brixter Mendoza"
