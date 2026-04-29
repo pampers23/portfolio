@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
-import { formSchema } from "@/zod-schema";
+import { formSchema, FormValues } from "@/zod-schema";
 import { zodResolver } from "@hookform/resolvers/zod"
 import emailjs from "@emailjs/browser";
 import { EMAILJS } from "@/lib/config";
@@ -24,12 +24,12 @@ function Contact() {
   const [copied, setCopied] = useState<string | null>(null);
 
   const onSubmit = async (values: FormValues) => {
+    setLoading(true);
     const templateParams = {
       from_name: values.user_name,
       from_email: values.user_email,
       message: values.message,
     };
-    setLoading(true);
     emailjs
       .send(
         EMAILJS.SERVICE_ID, 
