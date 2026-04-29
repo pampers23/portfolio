@@ -1,6 +1,6 @@
 import About from "./components/About/about"
 import Background from "./components/background"
-// import Contact from "./components/Contact/contact"
+import Contact from "./components/Contact/contact"
 import ExperiencePage from "./components/Experience/experience-page"
 // import Footer from "./components/Footer/footer"
 import Home from "./components/Home/Home"
@@ -20,7 +20,7 @@ const App = () => {
 
         <section id="projects"><Projects /></section>
         <section id="experience"><ExperiencePage /></section>
-        {/* <section id="contact"><Contact /></section> */}
+        <section id="contact"><Contact /></section>
         {/* <Footer /> */}
       </div>
     </ThemeProvider>
