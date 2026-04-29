@@ -71,7 +71,7 @@ git clone https://github.com/pampers23/your-portfolio.git
 Navigate to the project folder:
 
 ```bash
-cd your-portfolio
+cd portfolio
 ```
 
 Install dependencies:
