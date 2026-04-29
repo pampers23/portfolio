@@ -23,6 +23,15 @@ function Contact() {
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState<string | null>(null);
 
+  const form = useForm({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      user_name: "",
+      user_email: "",
+      message: "",
+    }
+  })
+
   const onSubmit = async (values: FormValues) => {
     setLoading(true);
     const templateParams = {
@@ -32,21 +41,24 @@ function Contact() {
     };
     emailjs
       .send(
-        EMAILJS.SERVICE_ID, 
+        EMAILJS.SERVICE_ID,   
         EMAILJS.TEMPLATE_ID, 
         templateParams, 
         EMAILJS.PUBLIC_KEY)
       .then(() => {
         toast.success("Message sent successfully!");
         form.reset();
+        setLoading(false);
       })
       .catch((error) => {
         console.error("EmailJS error:", error);
         toast.error("Failed to send message. Try again later.");
+        setLoading(false);
       });
   };
 
   const copy = async (id: string, value: string) => {
+    console.log("Attempting to copy and toast");
     try {
       await navigator.clipboard.writeText(value);
       setCopied(id);
@@ -56,15 +68,6 @@ function Contact() {
       toast.error("Couldn't copy");
     }
   };
-
-  const form = useForm({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      user_name: "",
-      user_email: "",
-      message: "",
-    }
-  })
 
   return (
     <section id="contact" className="relative py-24 sm:py-32 scroll-mt-24 overflow-hidden">
