@@ -18,17 +18,22 @@ const StyledWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  background: rgba(0, 0, 0, 0.9);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
 
   .loader {
     width: 112px;
     height: 112px;
-    posotion: relative;
+    position: relative;
   }
 
   .box1,
   .box2,
   .box3 {
-    border: 16px solid #f5f5f5;
+    border: 16px solid #ffffff;
     box-sizing: border-box;
     position: absolute;
     display: block;
