@@ -79,7 +79,7 @@ const Home = () => {
           >
             <Button variant="hero" size="lg" asChild>
               <a
-                href="/resume.pdf"
+                href="https://drive.google.com/file/d/15zmBnt1mvHt4RG_49mNI1TVqXlqmeTYB/view?usp=drive_link"
                 download
                 className="inline-flex items-center justify-center gap-2 whitespace-nowrap"
               >
