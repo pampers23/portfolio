@@ -14,7 +14,7 @@ const Root = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false)
-    }, 10000)
+    }, 3000)
     return () => clearTimeout(timer)
   }, [])
 
